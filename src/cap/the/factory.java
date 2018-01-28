@@ -23,15 +23,7 @@ public class factory implements EntityFactory {
                 .with(new PhysicsComponent())
                 .build();
     }
-    @Spawns("coin")
-    public Entity newCoin(SpawnData data) {
-        return Entities.builder()
-                .type(Type.COIN)
-                .from(data)
-                .viewFromNodeWithBBox(new Circle(data.<Integer>get("width")/2, Color.GOLD))
-                .with(new CollidableComponent(true))
-                .build();
-    }
+
     @Spawns("player")
     public Entity newPlayer(SpawnData data) {
         PhysicsComponent physics = new PhysicsComponent();
@@ -47,14 +39,40 @@ public class factory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("coin")
+    public Entity newCoin(SpawnData data) {
+        return Entities.builder()
+                .type(Type.COIN)
+                .from(data)
+                .viewFromNodeWithBBox(new Circle(data.<Integer>get("width")/2, Color.GOLD))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 
     @Spawns("door")
     public Entity newDoor(SpawnData data) {
         return Entities.builder()
-                .from(data)
                 .type(Type.DOOR)
-                .viewFromNodeWithBBox(new Circle(data.<Integer>get("width")/2, Color.GOLD))
+                .from(data)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
                 .build();
+    }
+
+    @Spawns("enemy")
+    public Entity newEnemy(SpawnData data){
+        PhysicsComponent physics = new PhysicsComponent();
+        physics.setBodyType(BodyType.DYNAMIC);
+
+        return Entities.builder()
+                .type(Type.ENEMY)
+                .from(data)
+                .viewFromNodeWithBBox(new Rectangle(30,30,Color.RED))
+                .with(new CollidableComponent(true))
+                .with(physics)
+                //.with(new EnemyControl())
+                .build();
+
     }
 
 

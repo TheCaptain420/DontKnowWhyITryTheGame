@@ -41,16 +41,16 @@ public class PlayerControl extends Control{
 
     public void left() {
         getEntity().setScaleX(-1);
-        physics.setVelocityX(-150);
+        physics.setVelocityX(-100);
     }
 
     public void right() {
         getEntity().setScaleX(1);
-        physics.setVelocityX(150);
+        physics.setVelocityX(100);
     }
 
     public void jump() {
-        physics.setVelocityY(-400);
+        physics.setVelocityY(-100);
     }
 }
 
