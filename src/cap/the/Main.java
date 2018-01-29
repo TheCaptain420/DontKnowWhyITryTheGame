@@ -8,6 +8,7 @@ import com.almasb.fxgl.physics.handler.CollectibleHandler;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.ui.TextFlowBuilder;
 import com.almasb.fxgl.ui.UI;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.org.apache.xpath.internal.SourceTree;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
@@ -21,8 +22,8 @@ public class Main extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
-        gameSettings.setWidth(15*70);
-        gameSettings.setHeight(10*70);
+        gameSettings.setWidth(10   *64);
+        gameSettings.setHeight(15*64);
     }
 
     private Entity player;
